@@ -6,5 +6,7 @@ public class Main {
     ChucNang chucNang = new ChucNang();
     chucNang.listSanPham();
 
+    chucNang.addProduct();
+
     }
 }

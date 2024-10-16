@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class ChucNang {
 
@@ -21,6 +18,25 @@ public class ChucNang {
             double price = rt.getDouble("price");
             int stock = rt.getInt("stock");
             System.out.println(id + "--" + name +"--" + ram + "--" + ssd + "--" + chipset + "--" + price +"--" + stock);
+        }
+    }
+
+    public void addProduct() throws SQLException {
+        KetNoiCsdl ketNoiCsdl = new KetNoiCsdl();
+        Connection conn = ketNoiCsdl.connect();
+
+        String query = "insert into laptop (name, ram, ssd, chipset, price, stock) values (?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setString(1, "Laptop dell 4.0");
+        preparedStatement.setString(2, "68GB");
+        preparedStatement.setString(3,"264G");
+        preparedStatement.setString(4, "AMD B4500");
+        preparedStatement.setDouble(5, 40000);
+        preparedStatement.setInt(6, 1);
+        int row = preparedStatement.executeUpdate();
+
+        if(row != 0){
+            System.out.println("them thanh cong");
         }
     }
 }
